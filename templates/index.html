@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Traffic Controller</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+  }
+</style>
+<body>
+  <div class="container" style="background-color: rgb(255, 254, 216) ;border: 10px;max-height: fit-content;">
+  <center><h1 class="jumbotron bg-primary" style="font-family:Georgia;font-weight: 100;">Automatic Traffic Controller</h1></center>
+<center><h4 style="font-weight: bold;color: rgb(133, 0, 0);">Note : RED ON VEHICLE COUNT 10!!</h4></center>
+  <script>
+      $(function(){
+          window.setInterval(function(){
+  loadNewDecimal()
+          },500)
+      
+      function loadNewDecimal(){
+          $.ajax({
+              url:"/update_decimal",
+              type: "POST",
+              dataType:"json",
+              success: function(data){
+                  $(random_decimal).replaceWith(data) 
+  
+   
+              }
+  
+          });
+      }
+      });
+   
+  </script>
+
+  <center><h1 style="font-size:x-large ;">Streaming Live Traffic Cam </h1></center>
+<center><div id="">
+   <h1> {{x}} </h1>
+</div></center>
+
+<center>
+
+<img  height=300 width= 500 src="{{ url_for('video_feed') }}">
+</center>
+<br>
+<br>
+</div>
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
